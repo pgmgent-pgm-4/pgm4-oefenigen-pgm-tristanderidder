@@ -1,0 +1,17 @@
+.card{
+    border-radius: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: ghostwhite;
+    width: 20rem;
+}
+
+.card__img{
+    background-color: white;
+    border-radius: 50%;
+}
+
+.card__role{
+    color: purple;
+}
