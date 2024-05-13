@@ -1,25 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
+import { useFetch } from './hooks/useFetch';
+import { ThemeArea } from './context/ThemeContext';
+import ThemeSwitcher from './components/ThemeSwitcher';
 
+const url = "https://fakestoreapi.com/products"
 function App() {
+  const { data : products, isLoading, isError } = useFetch(url);
+  if(isLoading) return <>Loading...</>
+  if(isError) return <>Error...</>
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  <ThemeArea>
+    <ThemeSwitcher />
+    {products.map((product) => (
+        <div key={product.key}>{product.title}</div>  
+      ))}
+  </ThemeArea>);
 }
 
 export default App;
